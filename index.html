@@ -1,296 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* GLOBAL RESET & ALIGNMENT */
-    * { box-sizing: border-box; }
-    body { padding: 0; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f6f9; color: #333; }
-    
-    /* DESKTOP CENTERING */
-    .container { max-width: 600px; margin: 0 auto; padding: 15px; }
-    .hidden { display: none !important; }
-    
-    /* SYNTHWAVE RETRO LOGIN */
-    #login-page {
-      background: linear-gradient(180deg, #1a0b2e 0%, #4b1d52 40%, #f72585 80%, #ff9e00 100%);
-      min-height: 100vh;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-    .retro-sun { width: 120px; height: 120px; background: linear-gradient(180deg, #ffca3a, #ff595e); border-radius: 50%; box-shadow: 0 0 40px #ffca3a; margin-bottom: 20px; }
-    .neon-text { font-family: 'Courier New', Courier, monospace; font-size: 2.5em; margin: 0 0 10px 0; font-weight: 900; letter-spacing: 2px; color: #fff; text-shadow: 0 0 5px #fff, 0 0 20px #f72585, 0 0 40px #f72585; }
-    .retro-box { background: rgba(0,0,0,0.6); padding: 25px; border-radius: 15px; width: 100%; max-width: 400px; border: 1px solid #f72585; }
-    .retro-box input { width: 100%; margin-bottom: 15px; background: #fff; border: none; padding: 12px; border-radius: 5px; color: #000; font-weight: bold; }
-    .retro-btn { background: #f72585; color: white; width: 100%; padding: 15px; border: none; font-weight: bold; font-size: 1.1em; border-radius: 5px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* APP INTERFACE */
-    .xp-badge { background: #111 !important; color: #fff !important; padding: 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
-    .xp-badge h2 { color: #fff !important; margin: 0; }
-    #dispBal { color: #ffd700 !important; font-size: 2.5em !important; font-weight: 900; line-height: 1; margin: 0; }
-    #dispTotal { color: #fff !important; font-size: 1.5em !important; font-weight: bold; margin: 0; }
-    .xp-label { color: #aaa !important; font-size: 0.75em; letter-spacing: 1px; text-transform: uppercase; }
-
-    .tab-bar { display: flex; gap: 5px; position: sticky; top: 0; background: #f4f6f9; padding: 10px 0; z-index: 100; border-bottom: 2px solid #ddd; }
-    .tab-bar button { flex: 1; font-size: 11px; background: #e0e0e0; border: none; font-weight: bold; color: #555; padding: 12px 5px; border-radius: 5px 5px 0 0; cursor: pointer; }
-    .tab-bar button.active { background: #2c3e50; color: #fff; }
-
-    .week-header { background: #e67e22; color: white; padding: 10px; margin: 25px 0 10px 0; border-radius: 5px; font-weight: 900; text-align: center; letter-spacing: 1px; }
-    
-    /* ROUTE CARDS */
-    .route-item { border: 1px solid #ddd; padding: 15px; margin-bottom: 12px; border-radius: 8px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.02); color: #000; }
-    .route-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .route-header strong { font-size: 1.1em; color: #000; }
-    .route-score { font-weight: 900; color: #e67e22; font-size: 1.2em; }
-    
-    .btn-group { display: flex; gap: 4px; }
-    .btn-group button { padding: 10px 2px; font-size: 11px; flex: 1; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; }
-    .flash { background: #ffd700; color: #000; } .top { background: #2ecc71; color: #fff; } .zone { background: #3498db; color: #fff; } .reset { background: #fce4e4; color: #c0392b; }
-
-    /* HIGH CONTRAST INFO SECTIONS */
-    .info-section { background: #fff; color: #111; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .info-section h3 { margin-top: 0; color: #2c3e50; border-bottom: 2px solid #e67e22; padding-bottom: 5px; font-weight: 900; }
-    .info-section p, .info-section li { color: #333; line-height: 1.5; }
-    .info-section strong { color: #000; }
-    
-    /* REWARD BUTTONS */
-    .reward-btn { width: 100%; text-align: left; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #ccc; padding: 15px; border-radius: 8px; cursor: pointer; color: #111; }
-    .reward-btn span { color: #111; font-weight: bold; font-size: 1em; }
-    .reward-btn strong { color: #e67e22; font-size: 1.1em; }
-    .claimed-item { background: #d4edda; border-left: 5px solid #28a745; color: #155724; padding: 12px; margin-bottom: 8px; border-radius: 4px; font-size: 14px; font-weight: bold; display: flex; justify-content: space-between;}
-    
-    /* FAQ SPECIFIC */
-    .faq-q { font-weight: 900; color: #111; margin-top: 15px; }
-    .faq-a { color: #444; margin-top: 5px; font-size: 0.95em; line-height: 1.4; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMP XP | Boulder Story</title>
+    <style>
+        /* [Keep the same CSS from the previous version here] */
+        /* I have added a loading overlay style below */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); color: #f72585; display: none; justify-content: center; align-items: center; z-index: 1000; font-family: monospace; }
+        * { box-sizing: border-box; }
+        body { padding: 0; margin: 0; font-family: 'Segoe UI', sans-serif; background: #f4f6f9; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 15px; }
+        .hidden { display: none !important; }
+        #login-page { background: linear-gradient(180deg, #1a0b2e 0%, #4b1d52 40%, #f72585 80%, #ff9e00 100%); min-height: 100vh; color: white; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        .retro-sun { width: 100px; height: 100px; background: linear-gradient(180deg, #ffca3a, #ff595e); border-radius: 50%; box-shadow: 0 0 30px #ffca3a; margin-bottom: 20px; }
+        .neon-text { font-family: 'Courier New', monospace; font-size: 2.2em; font-weight: 900; color: #fff; text-shadow: 0 0 15px #f72585; }
+        .retro-box { background: rgba(0,0,0,0.7); padding: 25px; border-radius: 15px; width: 100%; max-width: 350px; border: 1px solid #f72585; }
+        .retro-box input { width: 100%; margin-bottom: 15px; padding: 12px; border-radius: 5px; border: none; font-size: 16px; text-align: center; }
+        .retro-btn { background: #f72585; color: white; width: 100%; padding: 15px; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; }
+        .xp-badge { background: #111; color: #fff; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 15px; }
+        #dispBal { color: #ffd700; font-size: 2.5em; font-weight: 900; display: block; }
+        .tab-bar { display: flex; gap: 5px; position: sticky; top: 0; background: #f4f6f9; padding: 10px 0; z-index: 100; border-bottom: 2px solid #ddd; }
+        .tab-bar button { flex: 1; font-size: 10px; background: #e0e0e0; border: none; font-weight: bold; padding: 12px 5px; border-radius: 5px; cursor: pointer; }
+        .tab-bar button.active { background: #2c3e50; color: #fff; }
+        .week-header { background: #e67e22; color: white; padding: 10px; margin: 20px 0 10px 0; border-radius: 5px; font-weight: 900; text-align: center; }
+        .route-item { border: 1px solid #ddd; padding: 15px; margin-bottom: 12px; border-radius: 8px; background: #fff; color: #111; }
+        .btn-group { display: flex; gap: 4px; margin-top: 10px; }
+        .btn-group button { flex: 1; padding: 10px; border: none; font-weight: bold; border-radius: 4px; font-size: 11px; cursor: pointer; }
+        .flash { background: #ffd700; color: #000; } .top { background: #2ecc71; color: #fff; } .zone { background: #3498db; color: #fff; } .reset { background: #fce4e4; color: #c0392b; }
+        .info-section { background: #fff; color: #111; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; }
+        .reward-btn { width: 100%; text-align: left; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #ccc; padding: 15px; border-radius: 8px; cursor: pointer; color: #111; }
+    </style>
 </head>
 <body>
 
-  <div id="login-page">
+<div id="loader">ACCESSING MAINFRAME...</div>
+
+<div id="login-page">
     <div class="retro-sun"></div>
     <div class="neon-text">COMP XP</div>
-    <p style="margin-bottom: 30px; font-size: 1.1em; font-weight: bold;">BOULDER STORY EVENT</p>
-    
     <div class="retro-box">
-      <input type="email" id="login-email" placeholder="ENTER EMAIL" required>
-      
-      <div id="register-fields" class="hidden">
-        <p style="font-size: 0.8em; text-align: left; margin-bottom: 5px; color: #fff;">New climber! Enter your name:</p>
-        <input type="text" id="login-name" placeholder="FULL NAME">
-      </div>
-      
-      <button id="login-btn" class="retro-btn" onclick="handleLogin()">START CLIMBING</button>
-      <button id="register-btn" class="retro-btn hidden" onclick="handleRegister()" style="background: #4cc9f0;">REGISTER & PLAY</button>
-    </div>
-  </div>
-
-  <div id="app-page" class="hidden container">
-    <div class="tab-bar">
-      <button id="btn-score" class="active" onclick="showTab('score')">SCORECARD</button>
-      <button id="btn-prizes" onclick="showTab('prizes')">REWARDS</button>
-      <button id="btn-info" onclick="showTab('info')">INFO & FAQ</button>
-    </div>
-
-    <div class="xp-badge">
-      <h2 id="dispName">Climber Name</h2>
-      <div style="display:flex; justify-content:space-around; align-items:center; margin-top:15px;">
-        <div><span class="xp-label">LIFETIME XP</span><br><strong id="dispTotal">0</strong></div>
-        <div style="border-left: 1px solid #333; height: 50px;"></div>
-        <div><span class="xp-label">XP REMAINING</span><br><strong id="dispBal">0</strong></div>
-      </div>
-    </div>
-
-    <div id="tab-score">
-      <div class="week-header">WEEK 1</div><div id="w1-list"></div>
-      <div class="week-header">WEEK 2</div><div id="w2-list"></div>
-    </div>
-
-    <div id="tab-prizes" class="hidden">
-      
-      <div class="info-section">
-        <h3>My Redemption History</h3>
-        <div id="claims-list"></div>
-      </div>
-
-      <div class="info-section">
-        <h3>Reward Shop</h3>
-        <p style="font-size: 0.85em;">Select a reward. A staff member must enter the authorization password to complete the claim.</p>
-        <div id="shop-list"></div>
-      </div>
-
-      <div class="info-section" style="background:#f8f9fa; border: 2px dashed #ccc;">
-        <h3 style="color:#000; border-color:#000;">Staff Verification (IG Bonus)</h3>
-        <input type="password" id="staffPass" placeholder="Staff Password" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px; color:#000;">
-        <div style="display:flex; gap:10px;">
-          <button onclick="verifyIG(1)" style="flex:1; padding:12px; background:#8e44ad; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Verify W1 Video</button>
-          <button onclick="verifyIG(2)" style="flex:1; padding:12px; background:#8e44ad; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">Verify W2 Video</button>
+        <input type="email" id="log-email" placeholder="EMAIL">
+        <input type="password" id="log-pin" class="hidden" placeholder="PIN" maxlength="4">
+        <div id="reg-fields" class="hidden">
+            <input type="text" id="reg-name" placeholder="FULL NAME">
+            <input type="password" id="reg-pin" placeholder="CREATE PIN" maxlength="4">
+            <label style="color:white; font-size: 12px;"><input type="checkbox" id="reg-opt" checked> Leaderboard Opt-in</label>
         </div>
-      </div>
+        <button id="main-btn" class="retro-btn" onclick="handleAuth()">ENTER</button>
     </div>
+</div>
 
-    <div id="tab-info" class="hidden">
-      <div class="info-section">
-        <h3>Welcome to COMP XP!</h3>
-        <p>This is a 2-week gamified bouldering event at <strong>Boulder Story</strong>. Send routes, earn XP, and buy exclusive rewards from the shop.</p>
-      </div>
-
-      <div class="info-section">
-        <h3>Scoring Guide</h3>
-        <ul>
-          <li><strong>Flash (100 XP):</strong> Completed on your very first attempt.</li>
-          <li><strong>Top (80 XP):</strong> Completed on your second or later attempt.</li>
-          <li><strong>Zone (30 XP):</strong> Reached the designated Zone hold but didn't finish.</li>
-        </ul>
-        <p><em>Note: If you tap the wrong score, tap the red 'X' to reset that route to 0 XP.</em></p>
-      </div>
-
-      <div class="info-section">
-        <h3>📸 Instagram Challenge (+100 XP)</h3>
-        <p>Want a massive points boost? Post a video of your favorite Comp XP route on Instagram and tag <strong>@boulderstorygym</strong>.</p>
-        <p>Show the post to a staff member at the desk, and they will verify it to add <strong>100 XP</strong> to your balance. (Valid once for Week 1, and once for Week 2).</p>
-      </div>
-
-      <div class="info-section">
-        <h3>F.A.Q.</h3>
-        <div class="faq-q">Q: Do I need an app installed?</div>
-        <div class="faq-a">A: No! Just keep this web link open. Next time you visit, simply enter your email to log back into your profile.</div>
-        
-        <div class="faq-q">Q: Can I combine discount vouchers?</div>
-        <div class="faq-a">A: No, reward vouchers cannot be combined with other ongoing promotions.</div>
-        
-        <div class="faq-q">Q: Are physical items guaranteed?</div>
-        <div class="faq-a">A: Physical prizes like T-shirts, Keychains, and Stickers are strictly while stocks and sizes last. Claim them fast!</div>
-        
-        <div class="faq-q">Q: Is anyone checking my scores?</div>
-        <div class="faq-a">A: This relies on the honor system! However, staff reserve the right to audit suspicious "perfect" scorecards. Keep it honest and fun.</div>
-      </div>
+<div id="app-page" class="hidden container">
+    <div class="tab-bar">
+        <button id="btn-score" class="active" onclick="showTab('score')">SCORECARD</button>
+        <button id="btn-leader" onclick="showTab('leader'); loadLeaderboard();">RANKING</button>
+        <button id="btn-prizes" onclick="showTab('prizes')">REWARDS</button>
+        <button id="btn-info" onclick="showTab('info')">INFO</button>
     </div>
-  </div>
+    <div class="xp-badge">
+        <h2 id="dispName">---</h2>
+        <strong id="dispBal">0</strong>
+        <span style="font-size:12px; color:#aaa">TOTAL XP: <span id="dispTotal">0</span></span>
+    </div>
+    <div id="tab-score">
+        <div class="week-header">WEEK 1</div><div id="w1-list"></div>
+        <div class="week-header">WEEK 2</div><div id="w2-list"></div>
+    </div>
+    <div id="tab-leader" class="hidden"><div class="info-section"><h3>Top 10</h3><div id="leader-list"></div></div></div>
+    <div id="tab-prizes" class="hidden">
+        <div class="info-section"><h3>History</h3><div id="claims-list"></div></div>
+        <div class="info-section"><h3>Shop</h3><div id="shop-list"></div></div>
+        <div class="info-section">
+            <input type="password" id="staffPass" placeholder="Staff Pass">
+            <button onclick="verifyIG(1)" style="width:100%; padding:10px; margin-top:5px;">Verify IG W1</button>
+            <button onclick="verifyIG(2)" style="width:100%; padding:10px; margin-top:5px;">Verify IG W2</button>
+        </div>
+    </div>
+    <div id="tab-info" class="hidden"><div class="info-section"><h3>Timeline</h3><p>W1: March 2-8<br>W2: March 9-15</p></div></div>
+</div>
 
-  <script>
-    let currentEmail = "";
-    
-    const rewards = [
-      ["Boulder Story Sticker", 15], ["Extra Raffle Draw", 20], ["10% off Pro Shop Voucher", 100],
-      ["Boulder Story Keychain", 160], ["Free New Guest Voucher", 230], ["11% off Entry Package Voucher", 290],
-      ["Boulder Story T-shirt Merch", 790], ["1 Day Entry (2mo valid)", 1000], ["30% off any Membership", 1100], ["5 Day Entry Pack", 1400]
-    ];
+<script>
+    // PASTE YOUR GOOGLE WEB APP URL HERE
+    const API_URL = "https://script.google.com/macros/s/YOUR_URL_HERE/exec";
+    let user = null;
 
-    function showTab(t) {
-      ['score', 'prizes', 'info'].forEach(id => document.getElementById('tab-'+id).classList.add('hidden'));
-      ['btn-score', 'btn-prizes', 'btn-info'].forEach(id => document.getElementById(id).classList.remove('active'));
-      document.getElementById('tab-'+t).classList.remove('hidden');
-      document.getElementById('btn-'+t).classList.add('active');
+    async function callAPI(params) {
+        document.getElementById('loader').style.display = 'flex';
+        const query = new URLSearchParams(params).toString();
+        const response = await fetch(`${API_URL}?${query}`);
+        const data = await response.json();
+        document.getElementById('loader').style.display = 'none';
+        return data;
     }
 
-    // --- LOGIN & REGISTER LOGIC ---
-    function handleLogin() {
-      let email = document.getElementById('login-email').value;
-      if(!email || !email.includes('@')) return alert("Enter a valid email address.");
-      
-      let btn = document.getElementById('login-btn');
-      btn.innerText = "LOADING...";
-      
-      google.script.run.withSuccessHandler(res => {
-        if(res.isNew) {
-          document.getElementById('register-fields').classList.remove('hidden');
-          document.getElementById('login-btn').classList.add('hidden');
-          document.getElementById('register-btn').classList.remove('hidden');
+    async function handleAuth() {
+        const email = document.getElementById('log-email').value;
+        const pin = document.getElementById('log-pin').value;
+        
+        if(document.getElementById('reg-fields').classList.contains('hidden')) {
+            const res = await callAPI({ action: 'login', email, pin });
+            if(res.isNew) {
+                document.getElementById('reg-fields').classList.remove('hidden');
+                document.getElementById('main-btn').innerText = "REGISTER";
+            } else if(res.needsPin) {
+                document.getElementById('log-pin').classList.remove('hidden');
+            } else if(res.error) {
+                alert(res.error);
+            } else {
+                user = res; renderApp();
+            }
         } else {
-          currentEmail = email;
-          renderApp(res);
+            const name = document.getElementById('reg-name').value;
+            const newPin = document.getElementById('reg-pin').value;
+            const optIn = document.getElementById('reg-opt').checked;
+            user = await callAPI({ action: 'register', email, name, pin: newPin, optIn });
+            renderApp();
         }
-      }).loginClimber(email);
     }
 
-    function handleRegister() {
-      let email = document.getElementById('login-email').value;
-      let name = document.getElementById('login-name').value;
-      if(!name) return alert("Please enter your name to register.");
-      
-      document.getElementById('register-btn').innerText = "CREATING PROFILE...";
-      google.script.run.withSuccessHandler(res => {
-        currentEmail = email;
-        renderApp(res);
-      }).registerClimber(email, name);
+    function renderApp() {
+        document.getElementById('login-page').classList.add('hidden');
+        document.getElementById('app-page').classList.remove('hidden');
+        document.getElementById('dispName').innerText = user.name;
+        document.getElementById('dispBal').innerText = user.balance;
+        document.getElementById('dispTotal').innerText = user.lifetime;
+
+        const now = new Date();
+        const w1Lock = (now < new Date('2026-03-02T00:00:00') || now > new Date('2026-03-08T22:00:00'));
+        const w2Lock = (now < new Date('2026-03-09T00:00:00') || now > new Date('2026-03-15T22:00:00'));
+
+        let w1H = ""; let w2H = "";
+        for(let i=0; i<16; i++) {
+            let locked = (i < 8) ? w1Lock : w2Lock;
+            let h = `<div class="route-item">
+                <strong>Route ${i<8?(i+1):(i-7)}</strong> <span style="float:right">${user.scores[i]||0} XP</span>
+                <div class="btn-group">
+                    <button class="flash" ${locked?'disabled':''} onclick="setScore(${i},100)">Flash</button>
+                    <button class="top" ${locked?'disabled':''} onclick="setScore(${i},80)">Top</button>
+                    <button class="zone" ${locked?'disabled':''} onclick="setScore(${i},30)">Zone</button>
+                    <button class="reset" ${locked?'disabled':''} onclick="setScore(${i},0)">X</button>
+                </div>
+            </div>`;
+            if(i<8) w1H += h; else w2H += h;
+        }
+        document.getElementById('w1-list').innerHTML = w1H;
+        document.getElementById('w2-list').innerHTML = w2H;
+        document.getElementById('claims-list').innerHTML = user.claims.map(c => `<div>✓ ${c}</div>`).join('') || "None";
+        const rewards = [["Sticker", 15], ["Raffle", 20], ["10% Voucher", 100], ["Keychain", 160], ["T-shirt", 790], ["5 Day Pass", 1400]];
+        document.getElementById('shop-list').innerHTML = rewards.map(r => `<button class="reward-btn" onclick="redeem('${r[0]}',${r[1]})"><span>${r[0]}</span> <strong>${r[1]} XP</strong></button>`).join('');
     }
 
-    function reloadData() {
-      google.script.run.withSuccessHandler(renderApp).loginClimber(currentEmail);
+    async function setScore(idx, val) {
+        const res = await callAPI({ action: 'saveScore', email: user.email, idx, val });
+        if(res.error) alert(res.error);
+        else refresh();
     }
 
-    // --- APP RENDER LOGIC ---
-    function renderApp(user) {
-      document.getElementById('login-page').classList.add('hidden');
-      document.getElementById('app-page').classList.remove('hidden');
-      
-      document.getElementById('dispName').innerText = user.name;
-      document.getElementById('dispTotal').innerText = user.lifetime;
-      document.getElementById('dispBal').innerText = user.balance;
-
-      let claimsHtml = user.claims.map(c => `<div class="claimed-item"><span>✓ ${c.split(' (')[0]}</span> <span style="font-weight:normal; font-size:0.85em;">${c.split(' (')[1].replace(')','')}</span></div>`).join('');
-      document.getElementById('claims-list').innerHTML = claimsHtml || "<p style='color:#777; font-weight:bold;'>No rewards claimed yet.</p>";
-      
-      document.getElementById('shop-list').innerHTML = rewards.map(r => `
-        <button class="reward-btn" onclick="requestRedeem('${r[0]}', ${r[1]})">
-          <span>${r[0]}</span> <strong>${r[1]} XP</strong>
-        </button>`).join('');
-
-      let w1Html = ""; let w2Html = "";
-      for(let i=0; i<16; i++) {
-        let current = user.scores[i] || 0;
-        let html = `
-          <div class="route-item">
-            <div class="route-header">
-              <strong>Route ${i<8 ? (i+1) : (i-7)}</strong> 
-              <span class="route-score">${current} XP</span>
-            </div>
-            <div class="btn-group">
-              <button class="flash" onclick="updateScore(${i},100)">Flash</button>
-              <button class="top" onclick="updateScore(${i},80)">Top</button>
-              <button class="zone" onclick="updateScore(${i},30)">Zone</button>
-              <button class="reset" onclick="updateScore(${i},0)">X</button>
-            </div>
-          </div>`;
-        if(i<8) w1Html += html; else w2Html += html;
-      }
-      document.getElementById('w1-list').innerHTML = w1Html;
-      document.getElementById('w2-list').innerHTML = w2Html;
+    async function loadLeaderboard() {
+        const list = await callAPI({ action: 'leaderboard' });
+        document.getElementById('leader-list').innerHTML = list.map((l, i) => `<div>#${i+1} ${l.name} - ${l.score} XP</div>`).join('');
     }
 
-    // --- ACTIONS ---
-    function updateScore(idx, val) {
-      google.script.run.withSuccessHandler(reloadData).saveScore(currentEmail, idx, val);
+    async function refresh() { user = await callAPI({ action: 'login', email: user.email, pin: "bypass" }); renderApp(); }
+    
+    function showTab(t) {
+        ['score', 'leader', 'prizes', 'info'].forEach(id => document.getElementById('tab-'+id).classList.add('hidden'));
+        document.getElementById('tab-'+t).classList.remove('hidden');
     }
 
-    function verifyIG(week) {
-      let pass = document.getElementById('staffPass').value;
-      if(pass !== "Allez") return alert("Incorrect Staff Password");
-      google.script.run.withSuccessHandler(msg => { 
-        alert(msg); 
-        document.getElementById('staffPass').value = "";
-        reloadData(); 
-      }).verifyIg(currentEmail, week);
+    async function verifyIG(w) {
+        const pass = document.getElementById('staffPass').value;
+        await callAPI({ action: 'verifyIg', email: user.email, week: w, pass });
+        refresh();
     }
 
-    function requestRedeem(name, cost) {
-      let bal = parseInt(document.getElementById('dispBal').innerText);
-      if(bal < cost) return alert("You don't have enough XP for this item!");
-      
-      let pass = prompt(`Staff Authorization Required.\nClaiming: ${name}\nCost: ${cost} XP\n\nPlease hand your phone to a staff member to enter the password:`);
-      if(pass === null) return; 
-      if(pass !== "Allez") return alert("Incorrect Staff Password. Redemption cancelled.");
-      
-      google.script.run.withSuccessHandler(msg => { 
-        alert(msg); 
-        reloadData(); 
-      }).processRedeem(currentEmail, name, cost);
+    async function redeem(item, cost) {
+        const pass = prompt("Staff Pass:");
+        await callAPI({ action: 'redeem', email: user.email, item, cost, pass });
+        refresh();
     }
-  </script>
+</script>
 </body>
 </html>
